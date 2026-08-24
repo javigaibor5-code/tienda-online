@@ -89,14 +89,11 @@ subida de imágenes de producto y una interfaz responsive con Bootstrap.
 
 ## Capturas de pantalla
 
-> Agrega aquí las capturas del catálogo, el detalle de producto y el carrito
-> (por ejemplo dentro de una carpeta `docs/` del repositorio).
+### Catálogo
+![Catálogo](Captura%20de%20pantalla%202026-08-24%20125118.png)
 
-```
-![Catálogo](docs/catalogo.png)
-![Detalle de producto](docs/detalle.png)
-![Carrito](docs/carrito.png)
-```
+### Carrito
+![Carrito](Captura%20de%20pantalla%202026-08-24%20125136.png)
 
 ## Estructura del proyecto
 
