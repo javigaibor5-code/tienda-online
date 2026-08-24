@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}Catálogo — Tienda Online{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4"><i class="bi bi-grid"></i> Catálogo de Productos</h1>
+
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ url_for('static', filename='uploads/' + producto.imagen) if producto.imagen else url_for('static', filename='img/default.png') }}"
+                     class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body d-flex flex-column">
+                    <span class="badge bg-secondary mb-2 align-self-start">{{ producto.tipo|capitalize }}</span>
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text text-muted small">Código: {{ producto.codigo }}</p>
+                    <p class="card-text fs-4 fw-bold">
+                        ${{ "%.2f"|format(producto.precio_final()) }}
+                    </p>
+                    <div class="mt-auto d-grid gap-2">
+                        <a href="{{ url_for('detalle_producto', producto_id=producto.id) }}"
+                           class="btn btn-primary">
+                            <i class="bi bi-eye"></i> Ver detalle
+                        </a>
+                        {% if session.get('usuario_rol') == 'cliente' %}
+                            <form action="{{ url_for('agregar_carrito', producto_id=producto.id) }}" method="POST">
+                                <button type="submit" class="btn btn-outline-primary w-100">
+                                    <i class="bi bi-cart-plus"></i> Agregar al carrito
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-center text-muted">No hay productos disponibles todavía.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
